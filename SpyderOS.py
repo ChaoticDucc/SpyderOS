@@ -2,9 +2,8 @@
 ##import
 import random
 import time
-from datetime import datetime
 ##about
-version = "1.1"
+version = "1.1.1"
 credits = '''Made with Python 3.7 in Spyder
 Created by ChaoticDucc
 Components by ArousedbyTurds'''
@@ -15,23 +14,9 @@ z="Coming Soon"
 pn=">>"
 sn="> "
 q="q"
-##userdata
+##data
 items = []
-##programs
-def err(t):
-    e="Error "
-    c=str(t)
-    s=" > "
-    if t==0:
-        print(e+c+s+"Unkown")
-    elif t==1:
-        print(e+c+s+"Invalid Syntax")
-    elif t==2:
-        print(e+c+s+"Not Found")
-    elif t==3:
-        print(z)
-    elif t==4:
-        print(e+c+s+"User Input does not exist")
+##execution
 def pow(t):
     if t == 0:
         print("Starting Up")
@@ -48,6 +33,7 @@ def pow(t):
         print(" ")
         print("For help type: help")
         time.sleep(0.5)
+        sys()
     elif t == 1:
         print("Stopping Processes")
         time.sleep(1)
@@ -62,46 +48,69 @@ def pow(t):
         s=input("Currently Sleeping. Press enter to resume")
         print("Resumming...")
         time.sleep(0.5)
-        print(s)
         sys()
+        print(s)
+def err(t):
+    e="Error "
+    c=str(t)
+    s=" > "
+    if t==0:
+        print(e+c+s+"Unkown")
+    elif t==1:
+        print(e+c+s+"Invalid Syntax")
+    elif t==2:
+        print(e+c+s+"Not Found")
+    elif t==3:
+        print(z)
+    elif t==4:
+        print(e+c+s+"User Input does not exist")
+def help(t):
+    if t=="sys":
+        print("gethelp, about, power, num, time, list")
+    elif t=="about":
+        print("version, credits, copyright, licence")
+    print("Works everywhere: help, q")
 #system
 def sys():
+    n="sys"
     while True:
         x = input(">> ")
-        if x == "power":
-            power()
-            break
-        elif x == "help":
-            help()
-        elif x == "about":
-            about()
-        elif x == "num":
-            num()
-        elif x == "time":
-            times()
-        elif x == "list":
-            list()
-        else:
-            err(2)
-def help():
+        try:
+            if x == "help":
+                help(n)
+            elif x == "gethelp":
+                gethelp()
+                break
+            elif x == "about":
+                about()
+                break
+            elif x == "power" or x == q:
+                power()
+                break
+            elif x == "num":
+                num()
+                break
+            elif x == "time":
+                times()
+                break
+            elif x == "list":
+                list()
+                break
+            elif x == q:
+                print(z)
+            else:
+                err(2)
+        except:
+            err(0)
+def gethelp():
     print(z)
-    n="help"
-    while True:
-        x = input(pn+n+sn)
-        if x == "commands":
-            c = input("Search Commands: ")
-            print(c)
-        elif x == q:
-            break
-            sys()
-        else:
-            err(2)
+    sys()
 def about():
     n="about"
     while True:
         x = input(pn+n+sn)
         if x == "help":
-            print(z)
+            help(n)
         elif x == "version":
             print(version)
         elif x == "credits":
@@ -111,31 +120,31 @@ def about():
         elif x == "license":
             print(license)
         elif x == q:
-            break
             sys()
+            break
         else:
             err(2)
 def power():
     n="power"
     while True:
         x = input(pn+n+sn)
-        if x == "shutdown":
+        if x == "shutdown" or x == q:
             print("")
             pow(1)
             break
         elif x == "restart":
             print("")
             pow(1)
-            time.sleep(0.5)
+            time.sleep(2)
+            print("")
             pow(0)
             break
         elif x == "sleep":
-            print("")
             pow(2)
             break
         elif x == q:
-            break
             sys()
+            break
         else:
             err(2)
 #programs
@@ -155,11 +164,11 @@ Use // to divide without decimals
 Use % to find the remainder of a divsion (so 3%2=1)
 Use ** to raise to a power(so 3**2=9)
 Use s to reuse previous result
-Use q to quit
-        ''')
+Use q to quit''')
             while True:
                 r = input()
                 if r == q:
+                    sys()
                     break
                 else:
                     try:
@@ -185,20 +194,13 @@ def times():
         x = input(pn+n+sn)
         if x == "help":
             print(z)
-        elif x == "current":
-            c = datetime.now().strftime('''
-Date: %A, %d. %B %Y
-Week: %U (Sun is first day)
-Time: %H:%M:%z''')
-            print(c)
         elif x == "timer":
             print('''
 m = minutes
 s = seconds
-q = quit
-            ''')
+q = quit''')
             t=input()
-            if t in q:
+            if t == q:
                 times()
             elif t == "s":
                 sec = int(input("Seconds: "))
@@ -226,8 +228,8 @@ q = quit
             else:
                 err(1)
         elif x == q:
-            break
             sys()
+            break
         else:
             err(2)
 def list():
@@ -255,9 +257,8 @@ def list():
                 else:
                     err(4)
         elif x == q:
-            break
             sys()
+            break
         else:
             err(2)
 pow(0)
-sys()
