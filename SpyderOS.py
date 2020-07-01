@@ -3,7 +3,7 @@
 import random
 import time
 ##about
-version = "1.1.1"
+version = "1.2"
 credits = '''Made with Python 3.7 in Spyder
 Created by ChaoticDucc
 Components by ArousedbyTurds'''
@@ -67,9 +67,13 @@ def err(t):
 def help(t):
     if t=="sys":
         print("gethelp, about, power, num, time, list")
+        print("Works everywhere: help, q")
+    elif t=="gethelp":
+        print("commands")
     elif t=="about":
         print("version, credits, copyright, licence")
-    print("Works everywhere: help, q")
+    elif t=="power":
+        print("shutdown, restart, sleep") 
 #system
 def sys():
     n="sys"
@@ -103,8 +107,26 @@ def sys():
         except:
             err(0)
 def gethelp():
-    print(z)
-    sys()
+    n="gethelp"
+    while True:
+        x = input(pn+n+sn)
+        if x == "help":
+            help(n)
+        elif x == "commands":
+            while True:
+                s = input("Search: ")
+                if s == q:
+                    break
+                else:
+                    try:
+                        help(s)
+                    except:
+                        err(2)
+        elif x == q:
+            sys()
+            break
+        else:
+            err(2)
 def about():
     n="about"
     while True:
@@ -128,7 +150,7 @@ def power():
     n="power"
     while True:
         x = input(pn+n+sn)
-        if x == "shutdown" or x == q:
+        if x == "shutdown":
             print("")
             pow(1)
             break
