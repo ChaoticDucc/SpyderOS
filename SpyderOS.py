@@ -3,7 +3,7 @@
 import random
 import time
 ##about
-version = "1.2"
+version = "1.2.1"
 credits = '''Made with Python 3.7 in Spyder
 Created by ChaoticDucc
 Components by ArousedbyTurds'''
@@ -11,6 +11,7 @@ copyright = "Copyright (c) 2020 ChaoticDucc"
 license = "This project uses the MIT License. Find out more on our GitHub at https://go.chaoticducc.com/oslicence."
 ##variables
 z="Coming Soon"
+uq="Use q to quit"
 pn=">>"
 sn="> "
 q="q"
@@ -66,14 +67,45 @@ def err(t):
         print(e+c+s+"User Input does not exist")
 def help(t):
     if t=="sys":
-        print("gethelp, about, power, num, time, list")
-        print("Works everywhere: help, q")
+        print('''
+gethelp: get help on SpyderOS
+about: about SpyderOS
+power: display power options
+num: complete operatons with numbers
+time: complete operations with time
+list: view and edit a list of items''')
     elif t=="gethelp":
-        print("commands")
+        print('''
+commands: search for commands associated with an app''')
     elif t=="about":
-        print("version, credits, copyright, licence")
+        print('''
+version: show SpyderOS version
+credits: show credits for SpyderOS
+copyright: show SpyderOS's copyright
+licence: show SpyderOS's license''')
     elif t=="power":
-        print("shutdown, restart, sleep") 
+        print('''
+shutdown: stops all processes
+restart: stops all processes and then starts them again
+sleep: all processes continue to run and the systems sleeps''')
+    elif t=="num":
+        print('''
+math: complete math calculations
+rand: generate a random number between two numbers''')
+    elif t=="time":
+        print('''
+timer: set times for a set amount of minutes or seconds''')
+    elif t=="list":
+        print('''
+view: look at the list
+add: add an item to the list
+remove: remove an item from the list''')
+    else:
+        print(z)
+    print('''
+Works everywhere: 
+help: show list of commands
+q: quit current app, use in sys to quit os''')
 #system
 def sys():
     n="sys"
@@ -150,7 +182,9 @@ def power():
     n="power"
     while True:
         x = input(pn+n+sn)
-        if x == "shutdown":
+        if x == "help":
+            help(n)
+        elif x == "shutdown":
             print("")
             pow(1)
             break
@@ -175,7 +209,7 @@ def num():
     while True:
         x = input(pn+n+sn)
         if x == "help":
-            print(z)
+            help(n)
         elif x == "math":
             print('''
 Use + to add
@@ -206,8 +240,8 @@ Use q to quit''')
             r = random.randint(r1,r2)
             print(r)
         elif x == q:
-            break
             sys()
+            break
         else:
             err(2)
 def times():
@@ -215,7 +249,7 @@ def times():
     while True:
         x = input(pn+n+sn)
         if x == "help":
-            print(z)
+            help(n)
         elif x == "timer":
             print('''
 m = minutes
@@ -259,10 +293,11 @@ def list():
     while True:
         x = input(pn+n+sn)
         if x == "help":
-            print(z)
+            help(n)
         elif x == "view":
             print(items)
         elif x == "add":
+            print(uq)
             while True:
                 i = input()
                 if i == q:
@@ -270,6 +305,7 @@ def list():
                 else:
                     items.append(i)
         elif x == "remove":
+            print(uq)
             while True:
                 i = input()
                 if i == q:
