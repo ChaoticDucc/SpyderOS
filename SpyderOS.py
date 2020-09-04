@@ -3,7 +3,7 @@
 import random
 import time
 ##about
-version = "1.2.1"
+version = "1.2.2"
 credits = '''Made with Python 3.7 in Spyder
 Created by ChaoticDucc
 Components by ArousedbyTurds'''
@@ -94,14 +94,15 @@ math: complete math calculations
 rand: generate a random number between two numbers''')
     elif t=="time":
         print('''
-timer: set times for a set amount of minutes or seconds''')
+timer: set times for a set amount of minutes or seconds
+current: show current date and time''')
     elif t=="list":
         print('''
 view: look at the list
 add: add an item to the list
 remove: remove an item from the list''')
     else:
-        print(z)
+        err(2)
     print('''
 Works everywhere: 
 help: show list of commands
@@ -145,6 +146,7 @@ def gethelp():
         if x == "help":
             help(n)
         elif x == "commands":
+            print(uq)
             while True:
                 s = input("Search: ")
                 if s == q:
@@ -198,6 +200,9 @@ def power():
         elif x == "sleep":
             pow(2)
             break
+#        elif x == "x":
+#            print("done")
+#            break
         elif x == q:
             sys()
             break
@@ -219,12 +224,11 @@ Use / to divide
 Use // to divide without decimals
 Use % to find the remainder of a divsion (so 3%2=1)
 Use ** to raise to a power(so 3**2=9)
-Use s to reuse previous result
-Use q to quit''')
+Use s to reuse previous result''')
+            print(uq)
             while True:
                 r = input()
                 if r == q:
-                    sys()
                     break
                 else:
                     try:
@@ -252,9 +256,9 @@ def times():
             help(n)
         elif x == "timer":
             print('''
-m = minutes
-s = seconds
-q = quit''')
+Use m for minutes
+Use s for seconds''')
+            print(uq)
             t=input()
             if t == q:
                 times()
@@ -283,6 +287,12 @@ q = quit''')
                         time.sleep(1)
             else:
                 err(1)
+        elif x == "current":
+            t = time.localtime()
+            cd = time.strftime("%B %d, %Y", t)
+            ch = time.strftime("%H:%M:%S", t)
+            print(cd)
+            print(ch)
         elif x == q:
             sys()
             break
