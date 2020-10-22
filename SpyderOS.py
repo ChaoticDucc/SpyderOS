@@ -3,18 +3,22 @@
 import random
 import time
 ##about
-version = "1.2.2"
+version = "dev"
 credits = '''Made with Python 3.7 in Spyder
 Created by ChaoticDucc
 Components by ArousedbyTurds'''
 copyright = "Copyright (c) 2020 ChaoticDucc"
 license = "This project uses the MIT License. Find out more on our GitHub at https://go.chaoticducc.com/oslicence."
-##variables
+##sys-variables
 z="Coming Soon"
 uq="Use q to quit"
+ue="Use ENTER to "
 pn=">>"
 sn="> "
-q="q"
+##control-variables
+q=["q", "quit"]
+yes=["y", "yes"]
+no=["n", "no"]
 ##data
 items = []
 ##execution
@@ -62,7 +66,7 @@ def err(t):
     elif t==2:
         print(e+c+s+"Not Found")
     elif t==3:
-        print(z)
+        print(e+c+s+"Incorrect Response")
     elif t==4:
         print(e+c+s+"User Input does not exist")
 def help(t):
@@ -106,7 +110,8 @@ remove: remove an item from the list''')
     print('''
 Works everywhere: 
 help: show list of commands
-q: quit current app, use in sys to quit os''')
+quit: quit current app (use in sys to quit os)
+q: alternative to quit''')
 #system
 def sys():
     n="sys"
@@ -121,9 +126,6 @@ def sys():
             elif x == "about":
                 about()
                 break
-            elif x == "power" or x == q:
-                power()
-                break
             elif x == "num":
                 num()
                 break
@@ -133,8 +135,9 @@ def sys():
             elif x == "list":
                 list()
                 break
-            elif x == q:
-                print(z)
+            elif x == "power" or x in q:
+                power()
+                break
             else:
                 err(2)
         except:
@@ -149,14 +152,32 @@ def gethelp():
             print(uq)
             while True:
                 s = input("Search: ")
-                if s == q:
+                if s in q:
                     break
                 else:
                     try:
                         help(s)
                     except:
                         err(2)
-        elif x == q:
+        elif x == "errcodes":
+            print(uq)
+            while True:
+                s = input("Search: ")
+                if s in q:
+                    break
+                else:
+                    try:
+                        err(s)
+                    except:
+                        err(2)
+        elif x == "variables":
+            print("To quit use the following")
+            print(q)
+            print('''To say "yes" use the following''')
+            print(yes)
+            print('''To say "no" use the following''')
+            print(no)
+        elif x in q:
             sys()
             break
         else:
@@ -175,7 +196,9 @@ def about():
             print(copyright)
         elif x == "license":
             print(license)
-        elif x == q:
+        elif x == "spiderman":
+            print("With great power, comes great responsibility")
+        elif x in q:
             sys()
             break
         else:
@@ -187,9 +210,7 @@ def power():
         if x == "help":
             help(n)
         elif x == "shutdown":
-            print("")
             pow(1)
-            break
         elif x == "restart":
             print("")
             pow(1)
@@ -203,7 +224,7 @@ def power():
 #        elif x == "x":
 #            print("done")
 #            break
-        elif x == q:
+        elif x in q:
             sys()
             break
         else:
@@ -228,7 +249,7 @@ Use s to reuse previous result''')
             print(uq)
             while True:
                 r = input()
-                if r == q:
+                if r in q:
                     break
                 else:
                     try:
@@ -243,7 +264,7 @@ Use s to reuse previous result''')
             r2 = int(n2)
             r = random.randint(r1,r2)
             print(r)
-        elif x == q:
+        elif x in q:
             sys()
             break
         else:
@@ -260,9 +281,10 @@ Use m for minutes
 Use s for seconds''')
             print(uq)
             t=input()
-            if t == q:
+            if t in q:
                 times()
             elif t == "s":
+                print(ue+"start")
                 sec = int(input("Seconds: "))
                 while True:
                     if sec <= 0:
@@ -286,14 +308,14 @@ Use s for seconds''')
                         min -= 1
                         time.sleep(1)
             else:
-                err(1)
+                err(3)
         elif x == "current":
             t = time.localtime()
             cd = time.strftime("%B %d, %Y", t)
             ch = time.strftime("%H:%M:%S", t)
             print(cd)
             print(ch)
-        elif x == q:
+        elif x in q:
             sys()
             break
         else:
@@ -310,7 +332,7 @@ def list():
             print(uq)
             while True:
                 i = input()
-                if i == q:
+                if i in q:
                     break
                 else:
                     items.append(i)
@@ -318,13 +340,13 @@ def list():
             print(uq)
             while True:
                 i = input()
-                if i == q:
+                if i in q:
                     break
                 elif i in items:
                     items.remove(i)
                 else:
                     err(4)
-        elif x == q:
+        elif x in q:
             sys()
             break
         else:
