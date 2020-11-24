@@ -86,7 +86,7 @@ commands: search for commands associated with an app''')
 version: show SpyderOS version
 credits: show credits for SpyderOS
 copyright: show SpyderOS's copyright
-licence: show SpyderOS's license''')
+license: show SpyderOS's license''')
     elif t=="power":
         print('''
 shutdown: stops all processes
@@ -211,6 +211,7 @@ def power():
             help(n)
         elif x == "shutdown":
             pow(1)
+            break
         elif x == "restart":
             print("")
             pow(1)
