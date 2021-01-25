@@ -3,7 +3,7 @@
 import random
 import time
 ##about
-version = "dev"
+version = "1.3"
 credits = '''Made with Python 3.7 in Spyder
 Created by ChaoticDucc
 Components by ArousedbyTurds'''
